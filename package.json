@@ -1,0 +1,24 @@
+{
+  "name": "alexa-open-doc",
+  "version": "1.0.0",
+  "description": "An Amazon Alexa skill to open and edit google docs through voice",
+  "main": "service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acucciniello/alexa-open-doc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acucciniello/alexa-open-doc/issues"
+  },
+  "homepage": "https://github.com/acucciniello/alexa-open-doc#readme",
+  "dependencies": {
+    "google-auth-library": "^0.9.8",
+    "googleapis": "^12.4.0"
+  },
+  "devDependencies": {}
+}
