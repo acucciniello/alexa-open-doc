@@ -16,6 +16,9 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
 //builds a response to Alexa skill interface and 
 //tells Alexa how to respond to users request
  var ListFilesResponseFunction = function(intent, session, response) {
+ 		 	//response.tell(SPEECH_OUTPUT);
+ 		 	SPEECH_OUTPUT = JSON.stringify(session.user.userId);
+ 		 	console.log(SPEECH_OUTPUT);
  		 	response.tell(SPEECH_OUTPUT);
  };
 
@@ -32,6 +35,8 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
  	listFilesService.execute(event, context);
  }; 
 
+
+/*
 function callback(err, files) {
 	if(err){
 		console.log("Error in callback")
@@ -44,6 +49,11 @@ function callback(err, files) {
 	}
 	console.log(SPEECH_OUTPUT);
  };
+*/
 
+function getUserToken(err, token) {
+	SPEECH_OUTPUT = JSON.stringify(token);
+	response.tell(SPEECH_OUTPUT);
+}
 
 
