@@ -17,7 +17,8 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
 //tells Alexa how to respond to users request
  var ListFilesResponseFunction = function(intent, session, response) {
  		 	//response.tell(SPEECH_OUTPUT);
- 		 	SPEECH_OUTPUT = JSON.stringify(session.user.userId);
+ 		 	SPEECH_OUTPUT = "Here is your access token: " + JSON.stringify(session.user.accessToken);
+ 		 	//console.log("Here is your accessToken: ");
  		 	console.log(SPEECH_OUTPUT);
  		 	response.tell(SPEECH_OUTPUT);
  };
