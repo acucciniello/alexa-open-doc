@@ -2,7 +2,7 @@
 'use strict';
 var APP_ID = 'amzn1.ask.skill.9fadc9b7-4377-44f0-9d40-9e7f015a8bf7';
 var AlexaSkill = require('./AlexaSkill');
-var SPEECH_OUTPUT = 'Hello, here are your list of files good sir';
+var SPEECH_OUTPUT = new Object();
 const docs = require('./docs.js');
 var clientSecretsFile = 'client_secret.json';
 
@@ -17,11 +17,13 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
 //builds a response to Alexa skill interface and 
 //tells Alexa how to respond to users request
  var ListFilesResponseFunction = function(intent, session, response) {
- 		 	//response.tell(SPEECH_OUTPUT);
- 		 	SPEECH_OUTPUT = "Here is your access token: " + JSON.stringify(session.user.accessToken);
- 		 	//console.log("Here is your accessToken: ");
- 		 	console.log(SPEECH_OUTPUT);
- 		 	response.tell(SPEECH_OUTPUT);
+ 	var token  = JSON.stringify(session.user.accessToken);
+ 	//SPEECH_OUTPUT = "Here is your access token: " + JSON.stringify(session.user.accessToken);
+ 	docs(clientSecretsFile, token, SPEECH_OUTPUT, function(speech) {
+	 	console.log("we made it here");
+		console.log(speech);
+		response.tell(speech);
+ 	});
  };
 
 //this will be invoked when the user first launches or opens the skill with its invocation name 
@@ -38,7 +40,7 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
  }; 
 
 
-/*
+
 function callback(err, files) {
 	if(err){
 		console.log("Error in callback")
@@ -51,7 +53,7 @@ function callback(err, files) {
 	}   
 	console.log(SPEECH_OUTPUT);
  };
-*/
+
 
 function getUserToken(err, token) {
 	SPEECH_OUTPUT = JSON.stringify(token);
