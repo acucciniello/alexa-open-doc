@@ -11,17 +11,21 @@ var SCOPES = [ 'https://www.googleapis.com/auth/drive'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quikcstart.json';
 
-
+module.exports = function loadDocs(clientSecretsFile, accessToken, SPEECH, callback) {
+	fs.readFile(clientSecretsFile.toString(), function processClientSecrets(err, content) {
+		if(err){
+			console.log('Error Loading client secret file: ' + err);
+			return;
+		}
+		console.log(accessToken);
+		SPEECH = "Here is your access token: " + accessToken;
+		console.log(JSON.parse(content));
+		callback(SPEECH);
+		//authorize(JSON.parse(content), listFiles, accessToken, speech, fillOutput);
+	});
+}
 // Load client secrets from a local file.
-fs.readFile('client_secret_installed.json', function processClientSecrets(err, content) {
-  if (err) {
-    console.log('Error loading client secret file: ' + err);
-    return;
-  }
-  // Authorize a client with the loaded credentials, then call the
-  // Drive API.
-  authorize(JSON.parse(content), listFiles);
-});
+
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -30,22 +34,22 @@ fs.readFile('client_secret_installed.json', function processClientSecrets(err, c
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
- function authorize(credentials, callback){
- 	var clientSecret = credentials.installed.client_secret;
- 	var clientId = credentials.installed.client_id;
- 	var redirectUrl = credentials.installed.redirect_uris[0];
+ function authorize(credentials, listFilesFunction, token, speech, callback){
+ 	var clientSecret = credentials.web.client_secret;
+ 	var clientId = credentials.web.client_id;
+ 	var redirectUrl = credentials.web.redirect_uris[4];
  	var auth = new googleAuth();
  	var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
  	//Check if we have previously stored a token
- 	fs.readFile(TOKEN_PATH, function(err, token) {
- 		if(err) {
- 			getNewToken(oauth2Client, callback);
- 		}
- 		else{
- 			oauth2Client.credentials = JSON.parse(token);
- 			callback(oauth2Client);
- 		}
- 	});
+	if(token == undefined) {
+		speech = "token is undefined, please link your accound to use this skill";
+		console.log(speech);
+	}
+	else{
+		sppech = ""
+		oauth2Client.credentials = JSON.parse(token);
+		listFilesFunction(oauth2Client, callback);
+	}
  }
 
  /**
