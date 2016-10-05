@@ -11,17 +11,17 @@ var SCOPES = [ 'https://www.googleapis.com/auth/drive'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quikcstart.json';
 
-module.exports = function loadDocs(clientSecretsFile, accessToken, SPEECH, callback) {
+module.exports = function loadDocs(clientSecretsFile, accessToken, SPEECH, fillOutput, sendResponseCB) {
 	fs.readFile(clientSecretsFile.toString(), function processClientSecrets(err, content) {
 		if(err){
 			console.log('Error Loading client secret file: ' + err);
 			return;
 		}
-		console.log(accessToken);
-		SPEECH = "Here is your access token: " + accessToken;
-		console.log(JSON.parse(content));
-		callback(SPEECH);
-		//authorize(JSON.parse(content), listFiles, accessToken, speech, fillOutput);
+		//console.log(accessToken);
+		//SPEECH = "Here is your access token: " + accessToken;
+		//console.log(JSON.parse(content));
+		//callback(SPEECH);
+		authorize(JSON.parse(content), listFiles, accessToken, SPEECH, fillOutput, sendResponseCB);
 	});
 }
 // Load client secrets from a local file.
@@ -34,7 +34,7 @@ module.exports = function loadDocs(clientSecretsFile, accessToken, SPEECH, callb
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
- function authorize(credentials, listFilesFunction, token, speech, callback){
+ function authorize(credentials, listFilesFunction, token, speech, callback, sendResponseCB){
  	var clientSecret = credentials.web.client_secret;
  	var clientId = credentials.web.client_id;
  	var redirectUrl = credentials.web.redirect_uris[4];
@@ -44,11 +44,16 @@ module.exports = function loadDocs(clientSecretsFile, accessToken, SPEECH, callb
 	if(token == undefined) {
 		speech = "token is undefined, please link your accound to use this skill";
 		console.log(speech);
+		sendResponseCB(speech);
 	}
 	else{
-		sppech = ""
+		speech = "Here is your access token: " + token;
+		
 		oauth2Client.credentials = JSON.parse(token);
-		listFilesFunction(oauth2Client, callback);
+		console.log(oauth2Client.credentials);
+
+		sendResponseCB(speech);
+		//listFilesFunction(oauth2Client, callback);
 	}
  }
 
