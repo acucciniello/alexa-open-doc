@@ -14,19 +14,16 @@ var ListFilesService = function() {
 
 ListFilesService.prototype = Object.create(AlexaSkill.prototype);
 
-//builds a response to Alexa skill interface and 
+//builds a response to Alexa skill interface and
 //tells Alexa how to respond to users request
  var ListFilesResponseFunction = function(intent, session, response) {
  	var token  = JSON.stringify(session.user.accessToken);
- 	//SPEECH_OUTPUT = "Here is your access token: " + JSON.stringify(session.user.accessToken);
  	docs(clientSecretsFile, token, SPEECH_OUTPUT, callback, function(speech) {
-	 	console.log("we made it here");
-		console.log(speech);
 		response.tell(speech);
  	});
  };
 
-//this will be invoked when the user first launches or opens the skill with its invocation name 
+//this will be invoked when the user first launches or opens the skill with its invocation name
 //this is triggered when said "Alexa, list of files"
  ListFilesService.prototype.eventHandlers.onLaunch = ListFilesResponseFunction;
 
@@ -36,28 +33,21 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
 
  exports.handler = function(event, context) {
  	var listFilesService = new ListFilesService();
- 	listFilesService.execute(event, context); 	
- }; 
+ 	listFilesService.execute(event, context);
+ };
 
-
-
-function callback(err, files) {
+function callback(err, files, SPEECH, sendSpeech) {
+	SPEECH = '';
 	if(err){
 		console.log("Error in callback")
 		return err;
 	}
 	for (var i = 0; i < files.length; i++) {
-		SPEECH_OUTPUT[i] = files[i].name;
-
-		console.log(SPEECH_OUTPUT[i].name);
-	}   
 	console.log(SPEECH_OUTPUT);
- };
-
-
-function getUserToken(err, token) {
-	SPEECH_OUTPUT = JSON.stringify(token);
-	response.tell(SPEECH_OUTPUT);
-}
+		SPEECH = SPEECH + ' ' + files[i].name;
+		JSON.stringify(SPEECH[i]);
+	}
+	sendSpeech(SPEECH);
+};
 
 
