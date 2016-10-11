@@ -17,10 +17,7 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
 //tells Alexa how to respond to users request
  var ListFilesResponseFunction = function(intent, session, response) {
  	var token  = JSON.stringify(session.user.accessToken);
- 	//SPEECH_OUTPUT = "Here is your access token: " + JSON.stringify(session.user.accessToken);
  	docs(clientSecretsFile, token, SPEECH_OUTPUT, callback, function(speech) {
-	 	console.log("we made it here");
-		console.log(speech);
 		response.tell(speech);
  	});
  };
@@ -38,25 +35,17 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
  	listFilesService.execute(event, context);
  }; 
 
-
-
-function callback(err, files) {
+function callback(err, files, SPEECH, sendSpeech) {
+	SPEECH = '';
 	if(err){
 		console.log("Error in callback")
 		return err;
 	}
 	for (var i = 0; i < files.length; i++) {
-		SPEECH_OUTPUT[i] = files[i].name;
-		JSON.stringify(SPEECH_OUTPUT[i]);
-		//console.log(SPEECH_OUTPUT[i].name);
+		SPEECH = SPEECH + ' ' + files[i].name;
+		JSON.stringify(SPEECH[i]);
 	}
-	console.log(SPEECH_OUTPUT);
+	sendSpeech(SPEECH);
  };
-
-
-function getUserToken(err, token) {
-	SPEECH_OUTPUT = JSON.stringify(token);
-	response.tell(SPEECH_OUTPUT);
-}
 
 
