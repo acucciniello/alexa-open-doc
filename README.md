@@ -11,11 +11,15 @@ Alexa's Response:
 
 `"Here is your list of files ..."`
 
+##Getting Started
+TO DO
+
 ##TO DO:
 - [x] List Files in Your Drive 
 - [ ] Create a document
 - [ ] Delete a document
 - [ ] Edit and Save a file in your google drive
+- [ ] Full Description of Setup/Getting Started
 
 
 ##License
