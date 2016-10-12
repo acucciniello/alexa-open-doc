@@ -10,3 +10,7 @@ Sample phrase to say to Alexa to list you last ten files in Google Drive:
 Alexa's Response:
 
 `"Here is your list of files ..."`
+
+##License
+
+MIT 
