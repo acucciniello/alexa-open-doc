@@ -3,7 +3,7 @@
 var APP_ID = 'amzn1.ask.skill.9fadc9b7-4377-44f0-9d40-9e7f015a8bf7';
 var AlexaSkill = require('./AlexaSkill');
 var SPEECH_OUTPUT = new Object();
-const docs = require('./docs.js');
+const loadDocs = require('./loadDocs.js');
 var clientSecretsFile = 'client_secret.json';
 
 
@@ -18,7 +18,7 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
 //tells Alexa how to respond to users request
  var ListFilesResponseFunction = function(intent, session, response) {
  	var token  = JSON.stringify(session.user.accessToken);
- 	docs(clientSecretsFile, token, SPEECH_OUTPUT, callback, function(speech) {
+ 	loadDocs(clientSecretsFile, token, SPEECH_OUTPUT, callback, function(speech) {
 		response.tell(speech);
  	});
  };
@@ -37,7 +37,7 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype);
  };
 
 function callback(err, files, SPEECH, sendSpeech) {
-	SPEECH = '';
+	SPEECH = 'Here is your list of files: ';
 	if(err){
 		console.log("Error in callback")
 		return err;

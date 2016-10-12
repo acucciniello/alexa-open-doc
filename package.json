@@ -4,7 +4,7 @@
   "description": "An Amazon Alexa skill to open and edit google docs through voice",
   "main": "service.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard && node service.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,7 @@
     "google-auth-library": "^0.9.8",
     "googleapis": "^12.4.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "tape": "^4.6.2"
+  }
 }
