@@ -11,8 +11,8 @@ Alexa's Response:
 
 `"Here is your list of files ..."`
 
-###TO Do
-- [x] List Files in Yourw
+##TO DO:
+- [x] List Files in Your Drive 
 - [ ] Create a document
 - [ ] Delete a document
 - [ ] Edit and Save a file in your google drive
