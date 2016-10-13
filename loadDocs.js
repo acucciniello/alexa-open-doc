@@ -9,8 +9,9 @@ module.exports = function loadDocs (clientSecretsFile, accessToken, SPEECH, fill
     if (err) {
       console.log('Error Loading client secret file: ' + err)
       return
+    } else {
+      authorize(JSON.parse(content), listFiles, accessToken, SPEECH, fillOutput, sendResponseCB)
     }
-    authorize(JSON.parse(content), listFiles, accessToken, SPEECH, fillOutput, sendResponseCB)
   })
 }
 
