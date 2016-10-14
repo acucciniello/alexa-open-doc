@@ -1,6 +1,6 @@
 // test.js
 var test = require('tape')
-//var proxyquire = require('proxyquire')
+// var proxyquire = require('proxyquire')
 var ListFilesResponseFunction = require('../ListFilesResponseFunction.js')
 
 test('undefined accessToken', function (t) {
