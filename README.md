@@ -1,4 +1,6 @@
 # alexa-open-doc   [![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard     )
+[![npm version](https://badge.fury.io/js/alexa-open-doc.svg)](http://badge.fury.io/js/alexa-open-doc) [![Build Status](https://travis-ci.org/acucciniello/alexa-open-doc.svg?branch=master)](https://travis-ci.org/acucciniello/alexa-open-doc)
+===============
 An Amazon Alexa skill to open and edit google docs through voice
 
 ##Usage
