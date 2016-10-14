@@ -1,7 +1,7 @@
 // listFiles.js
 var google = require('googleapis')
 
-module.exports = function listFiles (auth, callback, speech, sendResponseCB) {
+module.exports = function listFiles (auth, callback) {
   var service = google.drive('v3')
   service.files.list({
     auth: auth,
@@ -9,21 +9,18 @@ module.exports = function listFiles (auth, callback, speech, sendResponseCB) {
     fields: 'nextPageToken, files(id, name)'
   }, function (err, response) {
     if (err) {
-      speech = auth.credentials + '   The API return an error: ' + err
-      sendResponseCB(speech)
+      var apiError = 'The API return an error: ' + err
+      callback(apiError)
       console.log('The API return an error: ' + err)
       return
     }
     var files = response.files
     if (files.length === 0) {
-      speech = 'No files found.'
+      var noFilesFound = 'No files found.'
       console.log(' No files found.')
-      sendResponseCB(speech)
-      // callback(err, null, speech, sendResponseCB);
+      callback(noFilesFound)
     } else {
-      speech = 'We got access to your files'
-        // sendResponseCB(speech);
-      callback(null, files, speech, sendResponseCB)
+      callback(null, files)
     }
   })
 }
