@@ -24,4 +24,9 @@
     "standard": "^8.4.0",
     "tape": "^4.6.2"
   }
+  "standard": {
+    "ignore": [
+      "AlexaSkill.js"
+    ]  
+  }
 }
