@@ -1,7 +1,7 @@
 // authorize.js
 var GoogleAuth = require('google-auth-library')
 
-module.exports = function authorize (credentials, listFilesFunction, token, callback) {
+module.exports = function authorize (credentials, token, callback) {
   if (token === undefined) {
     var undefinedToken = 'Token is undefined, please link your account to use this skill '
     callback(undefinedToken)
