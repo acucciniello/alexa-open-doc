@@ -9,11 +9,6 @@ module.exports = ListFilesResponseFunction
 
 function ListFilesResponseFunction (intent, session, response) {
   var accessToken = JSON.stringify(session.user.accessToken)
-  if (accessToken === undefined) {
-    var undefinedToken = 'Token is undefined, please link your account to use this skill '
-    response.tell(undefinedToken)
-    return
-  }
   fs.readFile(clientSecretsFile.toString(), function processClientSecrets (err, content) {
     if (err) {
       console.log('Error Loading client secret file: ' + err)

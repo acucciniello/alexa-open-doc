@@ -2,10 +2,6 @@
 var GoogleAuth = require('google-auth-library')
 
 module.exports = function authorize (credentials, token, callback) {
-  if (token === undefined) {
-    var undefinedToken = 'Token is undefined, please link your account to use this skill '
-    callback(undefinedToken)
-  }
   var clientSecret = credentials.web.client_secret
   var clientId = credentials.web.client_id
   var redirectUrl = credentials.web.redirect_uris[4]
@@ -16,6 +12,9 @@ module.exports = function authorize (credentials, token, callback) {
     access_token: token,
     refresh_token: 'REFRESH TOKEN HERE'
   })
+  if (token === undefined) {
+    var undefinedToken = 'Token is undefined, please link the skill'
+    callback(undefinedToken)
+  }
   callback(null, oauth2Client)
 }
-
