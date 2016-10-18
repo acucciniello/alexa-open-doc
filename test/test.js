@@ -3,7 +3,7 @@ var test = require('tape')
 // var proxyquire = require('proxyquire')
 var ListFilesResponseFunction = require('../ListFilesResponseFunction.js')
 
-test('undefined accessToken', function (t) {
+test('failed to read client secrets file', function (t) {
   var session = {
     user: {
 
@@ -11,7 +11,7 @@ test('undefined accessToken', function (t) {
   }
   var response = {
     tell: function (speech) {
-      t.equal(speech, 'Token is undefined, please link your account to use this skill ', ' It returns error meesage for undefined token')
+      t.equal(speech, 'There was an issue reaching the skill', ' It returns error meesage for undefined token')
       t.end()
     }
   }
