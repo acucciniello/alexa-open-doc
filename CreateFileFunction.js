@@ -1,13 +1,11 @@
-// builds a response to Alexa skill interface and
-// tells Alexa how to respond to users request
-var listFiles = require('./google/listFiles.js')
 var fs = require('fs')
 var authorize = require('./google/authorize.js')
 var clientSecretsFile = 'client_secret.json'
+var createFile = require('./google/createFile.js')
 
-module.exports = ListFilesResponseFunction
+module.exports = CreateFileFunction
 
-function ListFilesResponseFunction (intent, session, response) {
+function CreateFileFunction (intent, session, response) {
   var accessToken = JSON.stringify(session.user.accessToken)
   fs.readFile(clientSecretsFile.toString(), function processClientSecrets (err, content) {
     if (err) {
@@ -22,16 +20,14 @@ function ListFilesResponseFunction (intent, session, response) {
           response.tell(noOauth)
           return err
         }
-        listFiles(oauthClient, function (err, files) {
-          var fileNames = 'Here is your list of files: '
+        createFile(oauthClient, function (err, name) {
+          var fileCreated = 'We created a file named: '
           if (err) {
             response.tell(err)
             return err
           }
-          for (var i = 0; i < files.length; i++) {
-            fileNames = fileNames + ' ' + files[i].name
-          }
-          response.tell(fileNames)
+          fileCreated = fileCreated + name
+          response.tell(fileCreated)
           return
         })
       })
