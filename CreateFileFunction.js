@@ -7,6 +7,7 @@ module.exports = CreateFileFunction
 
 function CreateFileFunction (intent, session, response) {
   var accessToken = JSON.stringify(session.user.accessToken)
+  var fileToMake = JSON.stringify(intent.slots.fileName.value)
   fs.readFile(clientSecretsFile.toString(), function processClientSecrets (err, content) {
     if (err) {
       console.log('Error Loading client secret file: ' + err)
@@ -20,7 +21,7 @@ function CreateFileFunction (intent, session, response) {
           response.tell(noOauth)
           return err
         }
-        createFile(oauthClient, function (err, name) {
+        createFile(oauthClient, fileToMake, function (err, name) {
           var fileCreated = 'We created a file named: '
           if (err) {
             response.tell(err)

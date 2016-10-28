@@ -2,9 +2,9 @@ var google = require('googleapis')
 
 module.exports = createFile
 
-function createFile (auth, callback) {
+function createFile (auth, fileName, callback) {
   var fileMetadata = {
-    'name': 'Project plan'
+    'name': fileName
   }
   var service = google.drive('v3')
   service.files.create({
