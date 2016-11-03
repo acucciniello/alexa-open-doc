@@ -19,9 +19,7 @@ function createFile (auth, fileName, mime, callback) {
       return
     }
     var fileName = file.name.toString()
-    var fileExt = file.mimeType.toString()
-    var fileOutput = fileName + ' of type ' + fileExt
-    callback(null, fileOutput)
+    callback(null, fileName)
   })
 }
 

@@ -11,13 +11,11 @@ module.exports = function listFiles (auth, callback) {
     if (err) {
       var apiError = 'The API return an error: ' + err
       callback(apiError)
-      console.log('The API return an error: ' + err)
       return
     }
     var files = response.files
     if (files.length === 0) {
       var noFilesFound = 'No files found.'
-      console.log(' No files found.')
       callback(noFilesFound)
     } else {
       callback(null, files)
