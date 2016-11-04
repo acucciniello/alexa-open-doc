@@ -16,15 +16,10 @@ function searchFile (auth, name, callback) {
       callback(errMsg)
       return
     } else {
-      // callback(null, 'We made it into the res: ' + fileName)
-      // return
       res.files.forEach(function (file) {
         callback(null, file.id)
         return
       })
-      var noMatchingFile = 'We failed to find a matching file'
-      callback(noMatchingFile)
-      return
     }
   })
 }
