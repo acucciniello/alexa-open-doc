@@ -25,6 +25,17 @@ Alexa's Response:
 
 `"We created a file named {fileName}"`
 
+###Add to a File
+
+Sample phrase to say to Alexa to add text to a file in your Google Drive:
+
+` "Alexa, ask Google Drive to update {fileName} with {inputText}" `
+
+Alexa's Response:
+
+` "We updated the file named {fileName} with your input of {inputText}" `
+
+
 ##Getting Started
 TO DO
 
@@ -32,7 +43,7 @@ TO DO
 - [x] List Files in Your Drive 
 - [x] Create a file
 - [ ] Delete a file
-- [ ] Edit and Save a file in your google drive
+- [X] Edit in your google drive (In Progress)
 - [ ] Full Description of Setup/Getting Started
 
 
