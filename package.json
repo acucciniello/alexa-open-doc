@@ -6,6 +6,14 @@
   "scripts": {
     "test": "standard && tape test/**/*.js"
   },
+  "keywords": [
+    "alexa-open-doc",
+    "alexa",
+    "amazon",
+    "google",
+    "google drive",
+    "alexa skill"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/acucciniello/alexa-open-doc.git"
