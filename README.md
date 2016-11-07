@@ -3,7 +3,7 @@
 ===============
 An Amazon Alexa skill to open and edit google docs through voice
 
-[Project Page with Videos of Skill Usage](https://acucciniello.github.io/alexa-open-doc/)
+[View Videos of Skill in Use](https://acucciniello.github.io/alexa-open-doc/)
 
 ##Usage
 
