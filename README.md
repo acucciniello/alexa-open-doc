@@ -3,6 +3,7 @@
 ===============
 An Amazon Alexa skill to open and edit google docs through voice
 
+
 ##Usage
 
 ###List Files
@@ -34,6 +35,9 @@ Sample phrase to say to Alexa to add text to a file in your Google Drive:
 Alexa's Response:
 
 ` "We updated the file named {fileName} with your input of {inputText}" `
+
+###See Usage
+[Project Page with Videos of Skill Usage](https://acucciniello.github.io/alexa-open-doc/)
 
 
 ##Getting Started
