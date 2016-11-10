@@ -1,10 +1,10 @@
 var fs = require('fs')
 var authorize = require('./google/authorize.js')
 var clientSecretsFile = 'client_secret.json'
-var searchFile = require('./google/searchFile.js')
-var updateFileNoMD = require('./google/updateFileNoMD.js')
-var exportFile = require('./google/exportFile.js')
-var addText = require('./helpers/addText.js')
+var searchFile = require('./google/search-file.js')
+var updateFileNoMD = require('./google/update-file-no-md.js')
+var exportFile = require('./google/export-file.js')
+var addText = require('./helpers/add-text.js')
 
 module.exports = EditFileFunction
 
@@ -35,23 +35,18 @@ function EditFileFunction (intent, session, response) {
               response.tell(err)
               return err
             }
-            addText(fileText, inputString, function(err, file) {
+            fileText = addText(fileText, inputString)
+            response.tell('HEy')
+            updateFileNoMD(oauthClient, id, fileText, function (err, updatedFile) {
               if (err) {
                 response.tell(err)
                 return err
               }
-              updateFileNoMD(oauthClient, id, file, function (err, updatedFile) {
-                if (err) {
-                  response.tell(err)
-                  return err
-                }
-                var fileUpdated = 'We updated the file named ' + updatedFile + ' with your input of ' + inputString
-                response.tell(fileUpdated)
-                return
-              })
+              var fileUpdated = 'We updated the file named ' + updatedFile + ' with your input of ' + inputString
+              response.tell(fileUpdated)
+              return
             })
           })
-
         })
       })
     }

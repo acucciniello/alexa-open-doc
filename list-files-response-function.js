@@ -1,15 +1,14 @@
+// builds a response to Alexa skill interface and
+// tells Alexa how to respond to users request
+var listFiles = require('./google/list-files.js')
 var fs = require('fs')
 var authorize = require('./google/authorize.js')
 var clientSecretsFile = 'client_secret.json'
-var createFile = require('./google/createFile.js')
-var setMimeType = require('./google/setMimeType.js')
 
-module.exports = CreateFileFunction
+module.exports = ListFilesResponseFunction
 
-function CreateFileFunction (intent, session, response) {
+function ListFilesResponseFunction (intent, session, response) {
   var accessToken = JSON.stringify(session.user.accessToken)
-  var fileToMake = intent.slots.fileName.value
-  var fileType = intent.slots.fileType.value
   fs.readFile(clientSecretsFile.toString(), function processClientSecrets (err, content) {
     if (err) {
       console.log('Error Loading client secret file: ' + err)
@@ -23,21 +22,17 @@ function CreateFileFunction (intent, session, response) {
           response.tell(noOauth)
           return err
         }
-        setMimeType(fileType, function (err, mime) {
+        listFiles(oauthClient, function (err, files) {
+          var fileNames = 'Here is your list of files: '
           if (err) {
             response.tell(err)
             return err
           }
-          createFile(oauthClient, fileToMake, mime, function (err, name) {
-            var fileCreated = 'We created a file named: '
-            if (err) {
-              response.tell(err)
-              return err
-            }
-            fileCreated = fileCreated + name
-            response.tell(fileCreated)
-            return
-          })
+          for (var i = 0; i < files.length; i++) {
+            fileNames = fileNames + ' ' + files[i].name
+          }
+          response.tell(fileNames)
+          return
         })
       })
     }
