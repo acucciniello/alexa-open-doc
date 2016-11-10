@@ -36,7 +36,6 @@ function EditFileFunction (intent, session, response) {
               return err
             }
             fileText = addText(fileText, inputString)
-            response.tell('HEy')
             updateFileNoMD(oauthClient, id, fileText, function (err, updatedFile) {
               if (err) {
                 response.tell(err)
