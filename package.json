@@ -34,7 +34,7 @@
   },
   "standard": {
     "ignore": [
-      "AlexaSkill.js"
+      "alexa-skill.js"
     ]  
   }
 }
