@@ -13,13 +13,15 @@ function searchFile (auth, name, callback) {
   }, function (err, res) {
     if (err) {
       var errMsg = 'We are in the error check' + err
-      callback(errMsg)
-      return
+      return callback(errMsg)
+    } else if (res.files.length > 1) {
+      var tooMany = 'We found more than one file,  Try to be more specific with the file name'
+      return callback(tooMany)
+      // return
     } else {
-      res.files.forEach(function (file) {
-        callback(null, file.id)
-        return
-      })
+      var file = res.files[0]
+      callback(null, file.id)
+      return
     }
   })
 }
