@@ -17,7 +17,6 @@ function searchFile (auth, name, callback) {
     } else if (res.files.length > 1) {
       var tooMany = 'We found more than one file,  Try to be more specific with the file name'
       return callback(tooMany)
-      // return
     } else {
       var file = res.files[0]
       callback(null, file.id)
