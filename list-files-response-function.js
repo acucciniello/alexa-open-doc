@@ -7,8 +7,14 @@ var clientSecretsFile = 'client_secret.json'
 
 module.exports = ListFilesResponseFunction
 
+// Purpose: To list the last ten files in your google drive account
+// param (in): intent: given by Alexa, allows code to access parts of the intent request
+// param (in): session: given by Alexa, allows code to access parts of the session in the Lambda request
+// param (out): request: allows the user to change the response by Alexa
+
 function ListFilesResponseFunction (intent, session, response) {
   var accessToken = JSON.stringify(session.user.accessToken)
+  // Read the client_secret.json file for information needed to authorize a user.
   fs.readFile(clientSecretsFile.toString(), function processClientSecrets (err, content) {
     if (err) {
       console.log('Error Loading client secret file: ' + err)
@@ -31,6 +37,7 @@ function ListFilesResponseFunction (intent, session, response) {
           for (var i = 0; i < files.length; i++) {
             fileNames = fileNames + ' ' + files[i].name
           }
+          // Alexa outputs the file names retrieved from google drive
           response.tell(fileNames)
           return
         })

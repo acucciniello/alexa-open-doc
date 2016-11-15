@@ -17,6 +17,9 @@ ListFilesService.prototype = Object.create(AlexaSkill.prototype)
 // this is triggered when said "Alexa, ask Google Drive"
 ListFilesService.prototype.eventHandlers.onLaunch = ListFilesResponseFunction
 
+// How Alexa knows to handle all the different functions
+// Each intent corresponds to a function
+// That function is called when that intent is invoked
 ListFilesService.prototype.intentHandlers = {
   'ListFilesIntent': ListFilesResponseFunction,
   'CreateFileIntent': CreateFileFunction,

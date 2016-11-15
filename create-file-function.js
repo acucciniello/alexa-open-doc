@@ -6,6 +6,10 @@ var setMimeType = require('./google/set-mime-type.js')
 
 module.exports = CreateFileFunction
 
+// Purpose: To create a file in your google drive
+// param (in): intent: given by Alexa, allows code to access parts of the intent request
+// param (in): session: given by Alexa, allows code to access parts of the session in the Lambda request
+// param (out): request: allows the user to change the response by Alexa
 function CreateFileFunction (intent, session, response) {
   var accessToken = JSON.stringify(session.user.accessToken)
   var fileToMake = intent.slots.fileName.value

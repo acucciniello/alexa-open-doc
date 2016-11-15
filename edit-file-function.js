@@ -8,6 +8,10 @@ var addText = require('./helpers/add-text.js')
 
 module.exports = EditFileFunction
 
+// Purpose: To edit to the end of a file in your google drive
+// param (in): intent: given by Alexa, allows code to access parts of the intent request
+// param (in): session: given by Alexa, allows code to access parts of the session in the Lambda request
+// param (out): request: allows the user to change the response by Alexa
 function EditFileFunction (intent, session, response) {
   var accessToken = JSON.stringify(session.user.accessToken)
   var name = intent.slots.fileName.value
