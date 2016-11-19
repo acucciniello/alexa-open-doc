@@ -1,0 +1,7 @@
+doc
+document
+sheet
+spreadsheet
+powerpoint
+presentation
+folder 

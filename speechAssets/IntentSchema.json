@@ -1,0 +1,33 @@
+{
+  "intents": [
+  {
+    "intent": "ListFilesIntent"
+  },
+  {
+    "intent": "CreateFileIntent",
+      "slots": [
+        {
+          "name": "fileName",
+          "type": "FILE_NAMES"
+        },
+        {
+          "name": "fileType",
+          "type": "FILE_TYPES"
+        }
+      ]
+  },
+  {
+    "intent": "EditFileIntent",
+      "slots": [
+        {
+          "name": "fileName",
+          "type": "FILE_NAMES"
+        },
+        {
+          "name": "inputText",
+          "type": "INPUT_TEXT"
+        }
+      ]
+  }
+  ]
+}

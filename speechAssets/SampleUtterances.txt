@@ -1,0 +1,10 @@
+ListFilesIntent to list my files please
+ListFilesIntent can you list my files
+ListFilesIntent please list my files on google drive
+
+CreateFileIntent to create a {fileType} called {fileName}
+CreateFileIntent to start a new {fileType} called {fileName}
+
+EditFileIntent to update {fileName} with the following {inputText}
+EditFileIntent to edit the file {fileName} with {inputText}
+EditFileIntent to add text to the file {fileName} with {inputText}
