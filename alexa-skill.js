@@ -134,6 +134,11 @@ Response.prototype = (function () {
       outputSpeech: createSpeechObject(options.output),
       shouldEndSession: options.shouldEndSession
     }
+    if (options.linkAccount) {
+      alexaResponse.card = {
+        type: 'LinkAccount',
+      }
+    }
     if (options.reprompt) {
       alexaResponse.reprompt = {
         outputSpeech: createSpeechObject(options.reprompt)
@@ -189,6 +194,14 @@ Response.prototype = (function () {
         cardTitle: cardTitle,
         cardContent: cardContent,
         shouldEndSession: false
+      }))
+    },
+    tellWithLinkAccount: function (speechOutput) {
+      this._context.succeed(buildSpeechletResponse({
+        session: this._session,
+        output: speechOutput,
+        linkAccount: true,
+        shouldEndSession: true
       }))
     }
   }

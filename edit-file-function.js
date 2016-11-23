@@ -25,8 +25,8 @@ function EditFileFunction (intent, session, response) {
     } else {
       authorize(JSON.parse(content), accessToken, function (err, oauthClient) {
         if (err) {
-          var noOauth = 'We failed getting an oauthClient'
-          response.tell(noOauth)
+          var noOauth = 'You must have a linked account to use this skill. Please use the alexa app to link your account.'
+          response.tellWithLinkAccount(noOauth)
           return err
         }
         searchFile(oauthClient, name, function (err, id) {
