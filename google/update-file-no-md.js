@@ -18,10 +18,8 @@ function updateFileNoMD (auth, id, file, callback) {
     auth: auth
   }, function (err, response) {
     if (err) {
-      callback(err)
-      return
+      return callback(err)
     }
-    callback(null, response.name)
-    return
+    return callback(null, response.name)
   })
 }

@@ -136,7 +136,7 @@ Response.prototype = (function () {
     }
     if (options.linkAccount) {
       alexaResponse.card = {
-        type: 'LinkAccount',
+        type: 'LinkAccount'
       }
     }
     if (options.reprompt) {

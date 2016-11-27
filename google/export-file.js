@@ -14,10 +14,8 @@ function exportFile (auth, id, callback) {
     auth: auth
   }, function (err, response) {
     if (err) {
-      callback(err)
-      return
+      return callback(err)
     }
-    callback(null, response)
-    return
+    return callback(null, response)
   })
 }

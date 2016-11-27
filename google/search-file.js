@@ -16,7 +16,7 @@ function searchFile (auth, name, callback) {
     spaces: 'drive'
   }, function (err, res) {
     if (err) {
-      var errMsg = 'We are in the error check' + err
+      var errMsg = 'There was an error finding the file, please try again'
       return callback(errMsg)
     } else if (res.files.length > 1) {
       // Occurs when more than one file is found
@@ -24,10 +24,12 @@ function searchFile (auth, name, callback) {
       // all files found in the search and limit it to one
       var tooMany = 'We found more than one file,  Try to be more specific with the file name'
       return callback(tooMany)
+    } else if (res.files.length < 1) {
+      var noFileFound = 'There were no files that matched this inquiry'
+      return callback(noFileFound)
     } else {
       var file = res.files[0]
-      callback(null, file.id)
-      return
+      return callback(null, file.id)
     }
   })
 }

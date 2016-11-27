@@ -27,23 +27,22 @@ function EditFileFunction (intent, session, response) {
         if (err) {
           var noOauth = 'You must have a linked account to use this skill. Please use the alexa app to link your account.'
           response.tellWithLinkAccount(noOauth)
-          return err
+          return
         }
         searchFile(oauthClient, name, function (err, id) {
           if (err) {
             response.tell(err)
-            return err
+            return
           }
           exportFile(oauthClient, id, function (err, fileText) {
             if (err) {
-              response.tell(err)
-              return err
+              return response.tell(err)
             }
             fileText = addText(fileText, inputString)
             updateFileNoMD(oauthClient, id, fileText, function (err, updatedFile) {
               if (err) {
                 response.tell(err)
-                return err
+                return
               }
               var fileUpdated = 'We updated the file named ' + updatedFile + ' with your input of ' + inputString
               response.tell(fileUpdated)
