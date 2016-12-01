@@ -36,7 +36,8 @@ function EditFileFunction (intent, session, response) {
           }
           exportFile(oauthClient, id, function (err, fileText) {
             if (err) {
-              return response.tell(err)
+              response.tell(err)
+              return
             }
             fileText = addText(fileText, inputString)
             updateFileNoMD(oauthClient, id, fileText, function (err, updatedFile) {
