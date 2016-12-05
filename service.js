@@ -8,6 +8,7 @@ var CreateFileFunction = require('./create-file-function.js')
 var EditFileFunction = require('./edit-file-function.js')
 var HelpIntentFunction = require('./help-intent-function.js')
 var StopIntentFunction = require('./stop-intent-function.js')
+var CancelIntentFunction = require('./cancel-intent-function.js')
 
 // Define a ListFilesService function which inherits from AlexaSkill.js class
 var ListFilesService = function () {
@@ -28,7 +29,8 @@ ListFilesService.prototype.intentHandlers = {
   'CreateFileIntent': CreateFileFunction,
   'EditFileIntent': EditFileFunction,
   'AMAZON.HelpIntent': HelpIntentFunction,
-  'AMAZON.StopIntent': StopIntentFunction
+  'AMAZON.StopIntent': StopIntentFunction,
+  'AMAZON.CancelIntent': CancelIntentFunction
 }
 
 exports.handler = function (event, context) {
