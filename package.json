@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/acucciniello/alexa-open-doc#readme",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "google-auth-library": "^0.9.8",
     "googleapis": "^12.4.0"
   },
@@ -35,6 +36,6 @@
   "standard": {
     "ignore": [
       "alexa-skill.js"
-    ]  
+    ]
   }
 }

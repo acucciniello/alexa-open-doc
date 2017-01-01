@@ -1,4 +1,5 @@
 var fs = require('fs')
+require('dotenv').config()
 var authorize = require('./google/authorize.js')
 var clientSecretsFile = 'client_secret.json'
 var createFile = require('./google/create-file.js')
@@ -7,7 +8,7 @@ var winston = require('winston')
 require('winston-loggly-bulk')
 
 winston.add(winston.transports.Loggly, {
-  token: '9174ae8d-8205-4eeb-aa4e-96577486d880',
+  token: process.env.LOGGLY_TOKEN,
   subdomain: 'acucciniello',
   tags: ['Winston-NodeJS'],
   json: true
