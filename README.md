@@ -5,6 +5,13 @@ An Amazon Alexa skill to open and edit google docs through voice
 
 [View Videos of Skill in Use](https://acucciniello.github.io/alexa-open-doc/)
 
+## Donate
+
+If you would like to donate to help keep this skill updated and improving please donate here:
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8U849S663ZGTN&lc=US&item_name=Edit%20Docs%20Amazon%20Echo%20Skill&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
+
 ##Getting Started
 1. Must have an Amazon Echo to use this skill.  
 2. Open the Amazon Echo companion mobile application.
@@ -50,11 +57,6 @@ Alexa's Response:
 ` "We updated the file named {fileName} with your input of {inputText}" `
 
 
-##TO DO:
-- [x] List Files in Your Drive 
-- [x] Create a file
-- [X] Edit in your google drive (In Progress)
-- [X] Full Description of Getting Started
 
 
 ##License
